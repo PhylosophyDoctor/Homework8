@@ -1,34 +1,39 @@
 package com.company;
 
-
 import java.io.*;
 
 public class Progress {
 
-    public void check_progress() throws IOException {
+    File file = new File("character.data");
 
-
-        File file = new File("character.txt");
-        file.createNewFile();
-        try (FileInputStream fis = new FileInputStream(file);
-             BufferedReader bf = new BufferedReader(new InputStreamReader(fis));)
+    public static void save_progress(Character character) throws IOException
+    {
+        try (FileOutputStream fos = new FileOutputStream("character.data");
+             ObjectOutputStream oos = new ObjectOutputStream(fos))
         {
-            StringBuilder sb = new StringBuilder();
-
-
-            String character;
-            while ((character = bf.readLine()) != null) {
-                sb
-                        .append(character)
-                        .append("\n");
-            }
-            System.out.println(sb.toString());
-
+            oos.writeObject(character);
         }
-        catch (IOException err) {
-            System.out.println("Файл не существует или к нему нет доступа");
+        catch (IOException e) {
+            System.out.println("Файл не сущевствует или к нему нет доступа!");
         }
     }
+    public static void check_progress(Character character) throws IOException
+    {
+        try (FileInputStream fis = new FileInputStream("character.data");
+             ObjectInputStream ois = new ObjectInputStream(fis))
+        {
+            Object obj  = ois.readObject();
+            Character result = (Character) obj;
 
+            System.out.printf("\n Ваш персонаж: \n ЗДОРОВЬЕ - %d \n СИЛА - %d \n ЛОВКОСТЬ - %d \n ИНТЕЛЛЕКТ - %d \n УДАЧА - %d ",
+                    character.getHealth(),character.getPower(),character.getDexterity(), character.getIntelligence(), character.getLuck());
+        }
+        catch (IOException e) {
+            System.out.println("Файл не сущевствует или к нему нет доступа!");
+        }
+        catch (ClassNotFoundException e) {
+            System.out.println("Такого класса не существует!");
+        }
+    }
 
 }

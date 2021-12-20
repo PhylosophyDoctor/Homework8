@@ -4,13 +4,16 @@ import java.io.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
+        final Character PhD = new Character("PhylosophyDoctor",
+                88, 12, 8, 6, 10 );
 
-        Progress p1 = new Progress();
-        try {
-            p1.check_progress();
-        } catch (IOException err) {
-            System.out.println("Метод не может быть реализован из-за проблем с файлом.");
-        }
+
+        Progress.check_progress(PhD);
+        Progress.save_progress(PhD);
+
+
+
+
     }
 }
