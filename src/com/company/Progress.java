@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.*;
+import java.util.Random;
 
 public class Progress {
 
@@ -35,5 +36,6 @@ public class Progress {
             System.out.println("Такого класса не существует!");
         }
     }
+
 
 }

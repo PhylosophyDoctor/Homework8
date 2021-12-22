@@ -10,6 +10,17 @@ public class Main {
 
 
         Progress.check_progress(PhD);
+
+        Character.one_more_step(PhD);
+        Character.one_more_step(PhD);
+        Character.one_more_step(PhD);
+        Character.one_more_step(PhD);
+        Character.one_more_step(PhD);
+        Character.one_more_step(PhD);
+        Character.one_more_step(PhD);
+
+
+        Progress.check_progress(PhD);
         Progress.save_progress(PhD);
 
 
